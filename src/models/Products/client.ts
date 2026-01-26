@@ -7,3 +7,8 @@ export type ProductCardProps = {
 export type ProductListProps = {
    products?: Product[]
 }
+
+export type SearchProps = {
+   search: string,
+   setSearch: (value: string) => void
+}
