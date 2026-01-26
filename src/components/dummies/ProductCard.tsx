@@ -7,8 +7,8 @@ const ProductCard = ({ product }: ProductCardProps) => {
          <Image 
             fit="scale-down" 
             maxH="250px"
-            // src={product.image}
-            src={product.images[0]}
+            src={product.image}
+            // src={product.images[0]}
             alt={product.title}
          />
          <Card.Body gap="2">

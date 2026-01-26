@@ -4,11 +4,11 @@ import { IoIosSearch } from "react-icons/io" // <IoIosSearch />
 import { GoSearch } from "react-icons/go" // <GoSearch />
 import type { SearchProps } from "@/models/Products/client"
 
-const Search = ({ search, setSearch }: SearchProps) => {
-   // const [value, setValue] = useState("")
+const Search = ({ search, setSearch, setSelectedCategory }: SearchProps) => {
 
    function onChange(e: React.ChangeEvent<HTMLInputElement>) {
       setSearch(e.target.value)
+      setSelectedCategory([])
    }
 
    return <InputGroup startElement={<GoSearch />}>

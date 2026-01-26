@@ -1,12 +1,11 @@
 import { useQuery } from '@tanstack/react-query'
 import { productService } from '@/services/ProductService'
 
-export const useProducts = () => {
+export const useCategories = () => {
       const { isPending, isError, data } = useQuery({
-            queryKey: ['products'],
-            queryFn: productService.getProducts,
+            queryKey: ['categories'],
+            queryFn: productService.getCategories,
             select: (data) => data.data
-            // select: (data) => data.data.products
       })
 
       return { isPending, isError, data }

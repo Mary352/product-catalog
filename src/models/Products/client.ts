@@ -10,5 +10,17 @@ export type ProductListProps = {
 
 export type SearchProps = {
    search: string,
+   setSearch: (value: string) => void,
+   setSelectedCategory: (value: string[]) => void
+}
+
+export type ProductsByCategoryProps = {
+   category: string
+}
+
+export type ProductsFilterProps = {
+   selectedCategory: string[],
+   setSelectedCategory: (value: string[]) => void,
    setSearch: (value: string) => void
+
 }

@@ -1,6 +1,6 @@
 import ProductCard from "@/components/dummies/ProductCard"
 import type { ProductListProps } from "@/models/Products/client"
-import { Flex, Grid, GridItem } from "@chakra-ui/react"
+import { Grid, GridItem } from "@chakra-ui/react"
 
 const ProductsList = ({ products }: ProductListProps) => {
    if (!products || products.length === 0) {
