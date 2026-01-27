@@ -5,7 +5,10 @@ export type ProductCardProps = {
 }
 
 export type ProductListProps = {
-   products?: Product[]
+   products?: Product[],
+   count: number,
+   page: number,
+   setPage: (value: number) => void,
 }
 
 export type SearchProps = {

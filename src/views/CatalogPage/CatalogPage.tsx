@@ -9,7 +9,6 @@ import { useProductsByCategory } from '@/hooks/useProductsByCategory'
 import ProductsSort from '@/components/widgets/ProductsSort/ProductsSort'
 import { SORT_ORDER } from '@/utils/constants/productsConstants'
 import { sortProducts } from '@/utils/helpers/productsHelpers'
-import ProductsPagination from '@/components/layout/ProductsPagination'
 
 const pageSize = 12
 
@@ -45,9 +44,7 @@ const CatalogPage = () => {
       <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
       <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} setPage={setPage} />
       <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData} setPage={setPage} />
-      <ProductsPagination count={count} page={page} setPage={setPage}>
-         <ProductsList products={visibleItems} />
-      </ProductsPagination>
+      <ProductsList products={visibleItems} count={count} page={page} setPage={setPage} />
    </>
 }
 
