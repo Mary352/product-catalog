@@ -22,5 +22,10 @@ export type ProductsFilterProps = {
    selectedCategory: string[],
    setSelectedCategory: (value: string[]) => void,
    setSearch: (value: string) => void
+}
 
+export type ProductsSortProps = {
+   selectedOrder: string[],
+   setSelectedOrder: (value: string[]) => void,
+   products: Product[]
 }

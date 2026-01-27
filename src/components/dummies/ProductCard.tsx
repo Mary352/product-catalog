@@ -6,7 +6,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <Card.Root key={product.id} maxW="sm" h="100%" overflow="hidden">
          <Image 
             fit="scale-down" 
-            maxH="250px"
+            h="250px"
             src={product.image}
             // src={product.images[0]}
             alt={product.title}

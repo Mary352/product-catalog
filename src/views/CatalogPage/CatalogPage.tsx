@@ -6,6 +6,9 @@ import { useDebounce } from 'use-debounce'
 import { useCategories } from '@/hooks/useCategories'
 import ProductsFilter from '@/components/widgets/ProductsFilter/ProductsFilter'
 import { useProductsByCategory } from '@/hooks/useProductsByCategory'
+import ProductsSort from '@/components/widgets/ProductsSort/ProductsSort'
+import { SORT_ORDER } from '@/utils/constants/productsConstants'
+import { sortProducts } from '@/utils/helpers/productsHelpers'
 
 const CatalogPage = () => {
    const { isPending, isError, data } = useProducts()
@@ -13,6 +16,7 @@ const CatalogPage = () => {
    const [selectedCategory, setSelectedCategory] = useState<string[]>([])
    const [debouncedSearchValue] = useDebounce(searchValue, 300)
    // const { data: productsByCategory } = useProductsByCategory({ category: selectedCategory?.[0] || "" })
+   const [selectedOrder, setSelectedOrder] = useState<string[]>([SORT_ORDER.price_asc.value])
 
    const filteredData = debouncedSearchValue.trim() && data?.filter(val => {
       return val.title.toLocaleLowerCase().includes(debouncedSearchValue.toLocaleLowerCase())
@@ -26,11 +30,12 @@ const CatalogPage = () => {
       return val.category.toLocaleLowerCase() === selectedCategory[0].toLocaleLowerCase()
    })
 
-   const finalData = filteredData || dataByCategory || data
+   const finalData = sortProducts(filteredData || dataByCategory || data || [], selectedOrder)
 
    return <>
       <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} />
       <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} />
+      <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData}/>
       <ProductsList products={finalData} />
    </>
 }
