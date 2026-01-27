@@ -9,6 +9,9 @@ import { useProductsByCategory } from '@/hooks/useProductsByCategory'
 import ProductsSort from '@/components/widgets/ProductsSort/ProductsSort'
 import { SORT_ORDER } from '@/utils/constants/productsConstants'
 import { sortProducts } from '@/utils/helpers/productsHelpers'
+import ProductsPagination from '@/components/dummies/ProductsPagination'
+
+const pageSize = 12
 
 const CatalogPage = () => {
    const { isPending, isError, data } = useProducts()
@@ -17,6 +20,7 @@ const CatalogPage = () => {
    const [debouncedSearchValue] = useDebounce(searchValue, 300)
    // const { data: productsByCategory } = useProductsByCategory({ category: selectedCategory?.[0] || "" })
    const [selectedOrder, setSelectedOrder] = useState<string[]>([SORT_ORDER.price_asc.value])
+   const [page, setPage] = useState(1)
 
    const filteredData = debouncedSearchValue.trim() && data?.filter(val => {
       return val.title.toLocaleLowerCase().includes(debouncedSearchValue.toLocaleLowerCase())
@@ -31,13 +35,18 @@ const CatalogPage = () => {
    })
 
    const finalData = sortProducts(filteredData || dataByCategory || data || [], selectedOrder)
+   const startRange = (page - 1) * pageSize
+   const endRange = startRange + pageSize
 
-   return <>
-      <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} />
-      <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} />
-      <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData}/>
-      <ProductsList products={finalData} />
-   </>
+   const visibleItems = finalData.slice(startRange, endRange)
+   const count = finalData.length
+
+   return <ProductsPagination count={count} page={page} setPage={setPage}>
+      <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
+      <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} setPage={setPage} />
+      <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData} setPage={setPage} />
+      <ProductsList products={visibleItems} />
+   </ProductsPagination>
 }
 
 export default CatalogPage

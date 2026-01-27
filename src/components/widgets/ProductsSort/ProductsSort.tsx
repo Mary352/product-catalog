@@ -47,7 +47,7 @@ const SelectTrigger = () => {
    )
 }
 
-const ProductsSort = ({ selectedOrder, setSelectedOrder, products }: ProductsSortProps) => {
+const ProductsSort = ({ selectedOrder, setSelectedOrder, products, setPage }: ProductsSortProps) => {
    const defaultSelect = SORT_ORDER.price_asc
    const [selectedLabel, setSelectedLabel] = useState(defaultSelect.label)
 
@@ -65,6 +65,8 @@ const ProductsSort = ({ selectedOrder, setSelectedOrder, products }: ProductsSor
          icon: JSX.Element;
       }) => el.value === valStr)?.label || ""
       setSelectedLabel(selLabel)
+    
+      setPage(1)
 
       sortProducts(products, val)
    }

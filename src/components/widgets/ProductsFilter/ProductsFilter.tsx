@@ -7,7 +7,7 @@ import {
   type SelectValueChangeDetails,
 } from "@chakra-ui/react"
 
-const ProductsFilter = ({ selectedCategory, setSelectedCategory, setSearch }: ProductsFilterProps) => {
+const ProductsFilter = ({ selectedCategory, setSelectedCategory, setSearch, setPage }: ProductsFilterProps) => {
   const { data } = useCategories()
   const categories = createListCollection({
     items: data?.map(ctg => ({ label: ctg, value: ctg })) || []
@@ -19,6 +19,7 @@ const ProductsFilter = ({ selectedCategory, setSelectedCategory, setSearch }: Pr
   }>) {
     setSelectedCategory(e.value)
     setSearch("")
+    setPage(1)
   }
 
   return <Select.Root
