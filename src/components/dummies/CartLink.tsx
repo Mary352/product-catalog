@@ -8,7 +8,7 @@ const CartLink = ({ countInCart }: CartLinkProps) => {
    return (<Link href="/cart">
       <Box position="relative">
          <LuShoppingCart size="30" />
-         {countInCart && <Float>
+         {countInCart > 0 && <Float>
             <Circle size="5" bg="red" color="white">
                {countInCart}
             </Circle>
