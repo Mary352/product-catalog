@@ -1,5 +1,14 @@
 import type { Product } from "./api"
 
+export interface ProductWithAmount extends Product {
+   amount: number
+}
+
+export interface CustomCart {
+   products?: ProductWithAmount[],
+   totalCost: number,
+}
+
 export type ProductCardProps = {
    product: Product
 }
@@ -43,3 +52,5 @@ export type ProductsPaginationProps = {
    page: number,
    setPage: (value: number) => void,
 }
+
+ 
