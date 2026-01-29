@@ -1,17 +1,36 @@
-import type { ProductCardProps } from "@/models/Products/client"
+import type { ProductCardProps, ProductWithAmount } from "@/models/Products/client"
 import { Button, Card, Image, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { toaster } from "../ui/toaster"
 
 const ProductCard = ({ product }: ProductCardProps) => {
    const productInStock = product.rating.count
-   const [isInCart, setIsInCart] = useState(!!localStorage.getItem(`product_${product.id}`))
+   const [isInCart, setIsInCart] = useState(findProduct())
+
+   function findProduct() {
+      const productsJSON = localStorage.getItem(`products`) 
+      if (!productsJSON) {
+         return false
+      }
+
+      const products = JSON.parse(productsJSON)
+      return products.some((prod: ProductWithAmount) => 
+         prod.id === product.id)      
+   }
 
    function addToCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-      localStorage.setItem(`product_${product.id}`, JSON.stringify({
+      const productsJSON = localStorage.getItem(`products`)
+      let products: ProductWithAmount[] = []
+      if (productsJSON) {
+         products = JSON.parse(productsJSON)
+      }
+
+      products.push({
          ...product,
          amount: 1
-      }))
+      })
+      
+      localStorage.setItem(`products`, JSON.stringify(products))
 
       setIsInCart(true)
 
