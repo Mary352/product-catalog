@@ -10,6 +10,7 @@ import ProductsSort from '@/components/widgets/ProductsSort/ProductsSort'
 import { SORT_ORDER } from '@/utils/constants/productsConstants'
 import { sortProducts } from '@/utils/helpers/productsHelpers'
 import { Toaster } from '@/components/ui/toaster'
+import CartLink from '@/components/dummies/CartLink'
 
 const pageSize = 12
 
@@ -21,6 +22,8 @@ const CatalogPage = () => {
    // const { data: productsByCategory } = useProductsByCategory({ category: selectedCategory?.[0] || "" })
    const [selectedOrder, setSelectedOrder] = useState<string[]>([SORT_ORDER.price_asc.value])
    const [page, setPage] = useState(1)
+   const productsJSON = localStorage.getItem("products")
+   const [countInCart, setCountInCart] = useState<number>(productsJSON ? JSON.parse(productsJSON).length : 0)
 
    const filteredData = debouncedSearchValue.trim() && data?.filter(val => {
       return val.title.toLocaleLowerCase().includes(debouncedSearchValue.toLocaleLowerCase())
@@ -46,7 +49,8 @@ const CatalogPage = () => {
       <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
       <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} setPage={setPage} />
       <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData} setPage={setPage} />
-      <ProductsList products={visibleItems} count={count} page={page} setPage={setPage} />
+      <CartLink  countInCart={countInCart} />
+      <ProductsList products={visibleItems} count={count} page={page} setPage={setPage} setCountInCart={setCountInCart} />
    </>
 }
 

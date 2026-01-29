@@ -10,7 +10,8 @@ export interface CustomCart {
 }
 
 export type ProductCardProps = {
-   product: Product
+   product: Product,
+   setCountInCart: (value: number) => void,
 }
 
 export type ProductListProps = {
@@ -18,6 +19,7 @@ export type ProductListProps = {
    count: number,
    page: number,
    setPage: (value: number) => void,
+   setCountInCart: (value: number) => void,
 }
 
 export type SearchProps = {
@@ -53,4 +55,6 @@ export type ProductsPaginationProps = {
    setPage: (value: number) => void,
 }
 
- 
+export type CartLinkProps = {
+   countInCart: number,
+}

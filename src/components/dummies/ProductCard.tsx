@@ -3,7 +3,7 @@ import { Button, Card, Image, Text } from "@chakra-ui/react"
 import { useState } from "react"
 import { toaster } from "../ui/toaster"
 
-const ProductCard = ({ product }: ProductCardProps) => {
+const ProductCard = ({ product, setCountInCart }: ProductCardProps) => {
    const productInStock = product.rating.count
    const [isInCart, setIsInCart] = useState(findProduct())
 
@@ -33,6 +33,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       localStorage.setItem(`products`, JSON.stringify(products))
 
       setIsInCart(true)
+      setCountInCart(products.length)
 
       toaster.create({
          duration: 2000,
