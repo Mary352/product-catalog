@@ -18,7 +18,7 @@ const ProductCard = ({ product, setCountInCart }: ProductCardProps) => {
          prod.id === product.id)      
    }
 
-   function addToCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+   function addToCart() {
       const productsJSON = localStorage.getItem(`products`)
       let products: ProductWithAmount[] = []
       if (productsJSON) {
@@ -43,7 +43,7 @@ const ProductCard = ({ product, setCountInCart }: ProductCardProps) => {
    }
 
    return (
-      <Card.Root opacity={productInStock > 0 ? 1 : 0.6} key={product.id} maxW="sm" h="100%" overflow="hidden">
+      <Card.Root opacity={productInStock > 0 ? 1 : 0.6} maxW="sm" h="100%" overflow="hidden">
          <Image
             fit="scale-down"
             h="250px"

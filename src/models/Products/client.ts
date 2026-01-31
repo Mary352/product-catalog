@@ -1,3 +1,4 @@
+import type { NumberInputValueChangeDetails } from "@chakra-ui/react"
 import type { Product } from "./api"
 
 export interface ProductWithAmount extends Product {
@@ -9,11 +10,16 @@ export interface CustomCart {
    totalCost: number,
 }
 
-export type ProductCardProps = {
+export type ProductCardHorizontalProps = {
+   product: ProductWithAmount,
+   products: ProductWithAmount[],
+   setProducts: (value: ProductWithAmount[]) => void,
+}
+
+export type ProductCardProps  = {
    product: Product,
    setCountInCart: (value: number) => void,
 }
-
 export type ProductListProps = {
    products?: Product[],
    count: number,
@@ -57,4 +63,11 @@ export type ProductsPaginationProps = {
 
 export type CartLinkProps = {
    countInCart: number,
+}
+
+export type AmountInputProps = {
+   amount: number,
+   changeCounterValue: (e: NumberInputValueChangeDetails) => void,
+   countInStock: number
+
 }
