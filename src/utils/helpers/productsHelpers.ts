@@ -1,4 +1,5 @@
 import type { Product } from "@/models/Products/api";
+import type { ProductWithAmount } from "@/models/Products/client";
 
 export function sortProducts(products: Product[], selectedOrder: string[]) {
    return products.sort((a: Product, b: Product) => {
@@ -27,4 +28,19 @@ export function sortProducts(products: Product[], selectedOrder: string[]) {
 
       return 0
    })
+}
+
+export function countProductsInCart(products: ProductWithAmount[]) {
+   let productsArr: ProductWithAmount[] = [...products]
+   if (!products) {
+      const productsJSON = localStorage.getItem("products");
+      if (!productsJSON) {
+         return 0
+      }
+
+      productsArr.length = 0
+      productsArr = JSON.parse(productsJSON)
+   }
+
+   return products.reduce((accum, prod) => accum + prod.amount, 0)
 }

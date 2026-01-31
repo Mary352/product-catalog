@@ -4,6 +4,7 @@ import { LuTrash2 } from "react-icons/lu"
 import AmountInput from "./AmountInput"
 import { useContext } from "react"
 import { CountInCartContext } from "../layout/PageLayout"
+import { countProductsInCart } from "@/utils/helpers/productsHelpers"
 
 const ProductCardHorizontal = ({ product, products, setProducts }: ProductCardHorizontalProps) => {
    const setCountInCart = useContext(CountInCartContext);
@@ -11,13 +12,14 @@ const ProductCardHorizontal = ({ product, products, setProducts }: ProductCardHo
    function deleteFromCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
       const filteredProductsArr = products.filter(prod => prod.id !== product.id)
       setProducts(filteredProductsArr)
-      setCountInCart(filteredProductsArr.length)
+      setCountInCart(countProductsInCart(filteredProductsArr))
    }
 
    function changeCounterValue(e: NumberInputValueChangeDetails) {
       const indexOfCurrentProduct = products.findIndex(prod => prod.id === product.id)
       products[indexOfCurrentProduct].amount = e.valueAsNumber
       setProducts([...products])
+      setCountInCart(countProductsInCart(products))
    }
 
    return (

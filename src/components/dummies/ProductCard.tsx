@@ -4,6 +4,7 @@ import { useContext, useState } from "react"
 import { toaster } from "../ui/toaster"
 import { CountInCartContext } from "../layout/PageLayout"
 import { useLocalStorage } from "usehooks-ts"
+import { countProductsInCart } from "@/utils/helpers/productsHelpers"
 
 const ProductCard = ({ product }: ProductCardProps) => {
    const productInStock = product.rating.count
@@ -27,7 +28,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
       setProducts(newProductsArr)
       setIsInCart(true)
-      setCountInCart(newProductsArr.length)
+      setCountInCart(countProductsInCart(newProductsArr))
 
       toaster.create({
          duration: 2000,
