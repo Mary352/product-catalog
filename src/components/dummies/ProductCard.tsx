@@ -1,11 +1,13 @@
 import type { ProductCardProps, ProductWithAmount } from "@/models/Products/client"
 import { Button, Card, Image, Text } from "@chakra-ui/react"
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { toaster } from "../ui/toaster"
+import { CountInCartContext } from "../layout/PageLayout"
 
-const ProductCard = ({ product, setCountInCart }: ProductCardProps) => {
+const ProductCard = ({ product }: ProductCardProps) => {
    const productInStock = product.rating.count
    const [isInCart, setIsInCart] = useState(findProduct())
+   const setCountInCart = useContext(CountInCartContext);
 
    function findProduct() {
       const productsJSON = localStorage.getItem(`products`) 

@@ -17,15 +17,13 @@ export type ProductCardHorizontalProps = {
 }
 
 export type ProductCardProps  = {
-   product: Product,
-   setCountInCart: (value: number) => void,
+   product: Product
 }
 export type ProductListProps = {
    products?: Product[],
    count: number,
    page: number,
-   setPage: (value: number) => void,
-   setCountInCart: (value: number) => void,
+   setPage: (value: number) => void
 }
 
 export type SearchProps = {
