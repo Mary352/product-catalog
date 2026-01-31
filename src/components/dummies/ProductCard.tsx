@@ -3,39 +3,31 @@ import { Button, Card, Image, Text } from "@chakra-ui/react"
 import { useContext, useState } from "react"
 import { toaster } from "../ui/toaster"
 import { CountInCartContext } from "../layout/PageLayout"
+import { useLocalStorage } from "usehooks-ts"
 
 const ProductCard = ({ product }: ProductCardProps) => {
    const productInStock = product.rating.count
+   const [products, setProducts, removeValue] = useLocalStorage<ProductWithAmount[]>("products", [])
    const [isInCart, setIsInCart] = useState(findProduct())
    const setCountInCart = useContext(CountInCartContext);
 
    function findProduct() {
-      const productsJSON = localStorage.getItem(`products`) 
-      if (!productsJSON) {
-         return false
-      }
-
-      const products = JSON.parse(productsJSON)
-      return products.some((prod: ProductWithAmount) => 
-         prod.id === product.id)      
+      return products.some((prod: ProductWithAmount) =>
+         prod.id === product.id)
    }
 
    function addToCart() {
-      const productsJSON = localStorage.getItem(`products`)
-      let products: ProductWithAmount[] = []
-      if (productsJSON) {
-         products = JSON.parse(productsJSON)
-      }
+      const newProductsArr = [
+         ...products,
+         {
+            ...product,
+            amount: 1
+         }
+      ]
 
-      products.push({
-         ...product,
-         amount: 1
-      })
-      
-      localStorage.setItem(`products`, JSON.stringify(products))
-
+      setProducts(newProductsArr)
       setIsInCart(true)
-      setCountInCart(products.length)
+      setCountInCart(newProductsArr.length)
 
       toaster.create({
          duration: 2000,

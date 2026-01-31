@@ -2,12 +2,16 @@ import type { ProductCardHorizontalProps } from "@/models/Products/client"
 import { Box, Card, IconButton, Image, type NumberInputValueChangeDetails } from "@chakra-ui/react"
 import { LuTrash2 } from "react-icons/lu"
 import AmountInput from "./AmountInput"
+import { useContext } from "react"
+import { CountInCartContext } from "../layout/PageLayout"
 
 const ProductCardHorizontal = ({ product, products, setProducts }: ProductCardHorizontalProps) => {
+   const setCountInCart = useContext(CountInCartContext);
 
    function deleteFromCart(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
       const filteredProductsArr = products.filter(prod => prod.id !== product.id)
       setProducts(filteredProductsArr)
+      setCountInCart(filteredProductsArr.length)
    }
 
    function changeCounterValue(e: NumberInputValueChangeDetails) {
