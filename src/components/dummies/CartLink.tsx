@@ -1,4 +1,4 @@
-import type { CartLinkProps } from "@/models/Products/client"
+import type { CartLinkProps } from "@/models/Cart/client"
 import { Link } from "@chakra-ui/react"
 import { Box, Circle, Float } from "@chakra-ui/react"
 import { LuShoppingCart } from "react-icons/lu"

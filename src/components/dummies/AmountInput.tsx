@@ -1,4 +1,4 @@
-import type { AmountInputProps } from "@/models/Products/client"
+import type { AmountInputProps } from "@/models/Cart/client"
 import { HStack, IconButton, NumberInput } from "@chakra-ui/react"
 import { LuMinus, LuPlus } from "react-icons/lu"
 
