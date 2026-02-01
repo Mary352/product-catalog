@@ -29,13 +29,14 @@ const CartPage = () => {
    }
 
    return (<PageLayout>
-      <Flex gap={4} pt="2.5rem">
-         <Heading size={"3xl"} mb={7}>Итого</Heading>
-         <Heading size={"3xl"}>{products.reduce((accum, curVal) => accum + curVal.price * curVal.amount, 0).toFixed(2)}$</Heading>
+      <Heading textAlign="center" size="3xl" pt="2.5rem" mb="1rem">Оформление заказа</Heading>
+      <Flex gap="1rem" justifyContent="center">
+         <Heading size="2xl" mb="1.75rem">Итого</Heading>
+         <Heading size="2xl">{products.reduce((accum, curVal) => accum + curVal.price * curVal.amount, 0).toFixed(2)}$</Heading>
       </Flex>
-      <div style={{ width: "60%" }}>
+      <Flex maxW="760px" m="0 auto" direction="column" gap="0.25rem" pb="5rem">
          {products.map(prod => <ProductCardHorizontal key={prod.id} product={prod} products={products} setProducts={setProducts} />)}
-      </div>
+      </Flex>
    </PageLayout>
    )
 }

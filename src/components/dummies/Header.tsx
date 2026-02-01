@@ -7,7 +7,7 @@ const Header = ({ countInCart }: { countInCart: number }) => {
       padding="0.5rem 3rem"
       justifyContent="space-between"
    >
-      <Link href="/"><Heading size="3xl">Каталог</Heading></Link>
+      <Link href="/" _hover={{ opacity: "0.5", textDecoration: "none" }}><Heading size="3xl" color="purple">Каталог</Heading></Link>
       <CartLink countInCart={countInCart} />
    </Flex>)
 }
