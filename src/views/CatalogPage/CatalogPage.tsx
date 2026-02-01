@@ -11,6 +11,7 @@ import { SORT_ORDER } from '@/utils/constants/productsConstants'
 import { sortProducts } from '@/utils/helpers/productsHelpers'
 import { Toaster } from '@/components/ui/toaster'
 import PageLayout from '@/components/layout/PageLayout'
+import { Box, Flex, Heading } from '@chakra-ui/react'
 
 const pageSize = 12
 
@@ -22,7 +23,7 @@ const CatalogPage = () => {
    // const { data: productsByCategory } = useProductsByCategory({ category: selectedCategory?.[0] || "" })
    const [selectedOrder, setSelectedOrder] = useState<string[]>([SORT_ORDER.price_asc.value])
    const [page, setPage] = useState(1)
-   
+
    const filteredData = debouncedSearchValue.trim() && data?.filter(val => {
       return val.title.toLocaleLowerCase().includes(debouncedSearchValue.toLocaleLowerCase())
    })
@@ -44,9 +45,22 @@ const CatalogPage = () => {
 
    return <PageLayout>
       <Toaster />
-      <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
-      <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} setPage={setPage} />
-      <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData} setPage={setPage} />
+      <Box margin="0 auto" maxW="1000px" padding="0 15px" mb="15px">
+         <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
+         <Flex
+            mt="15px"
+            mb="40px"
+            justifyContent="space-between"
+            gap="0.5rem"
+            direction={{ base: "column", md: "row" }}
+         >
+            <Box w="100%" md={{ maxW: "300px" }} >
+               <ProductsFilter selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} setSearch={setSearchValue} setPage={setPage} />
+            </Box>
+            <ProductsSort selectedOrder={selectedOrder} setSelectedOrder={setSelectedOrder} products={finalData} setPage={setPage} />
+         </Flex>
+         <Heading margin="0 auto" w="fit-content" size="3xl">{selectedCategory.length > 0 ? selectedCategory : "Все товары"}</Heading>
+      </Box>
       <ProductsList products={visibleItems} count={count} page={page} setPage={setPage} />
    </PageLayout>
 }

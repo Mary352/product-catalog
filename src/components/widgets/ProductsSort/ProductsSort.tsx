@@ -7,6 +7,7 @@ import {
    IconButton,
    Portal,
    Select,
+   Text,
    createListCollection,
    useSelectContext,
    type SelectValueChangeDetails,
@@ -65,13 +66,13 @@ const ProductsSort = ({ selectedOrder, setSelectedOrder, products, setPage }: Pr
          icon: JSX.Element;
       }) => el.value === valStr)?.label || ""
       setSelectedLabel(selLabel)
-    
+
       setPage(1)
 
       sortProducts(products, val)
    }
    return (
-      <Flex gap="1rem" alignItems="center">
+      <Flex gap="0.5rem" alignItems="center">
          <Select.Root
             positioning={{ sameWidth: false }}
             collection={sortOrderOptions}
@@ -101,7 +102,7 @@ const ProductsSort = ({ selectedOrder, setSelectedOrder, products, setPage }: Pr
                </Select.Positioner>
             </Portal>
          </Select.Root>
-         <label>{selectedLabel}</label>
+         <Text textWrap="nowrap" fontSize="0.875rem">{selectedLabel}</Text>
       </Flex>
    )
 }

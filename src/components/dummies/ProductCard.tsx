@@ -38,7 +38,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
    }
 
    return (
-      <Card.Root opacity={productInStock > 0 ? 1 : 0.6} maxW="sm" h="100%" overflow="hidden">
+      <Card.Root opacity={productInStock > 0 ? 1 : 0.6} h="100%" overflow="hidden">
          <Image
             fit="scale-down"
             h="250px"
