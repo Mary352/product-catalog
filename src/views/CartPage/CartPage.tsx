@@ -4,7 +4,7 @@ import type { ProductWithAmount } from "@/models/Products/client"
 import { Flex, Heading, Link } from "@chakra-ui/react"
 import { LuShoppingCart } from "react-icons/lu"
 import { useLocalStorage } from 'usehooks-ts'
-import EmptyPage from "../EmptyPage/EmptyPage"
+import { EmptyPage } from "../EmptyPage/EmptyPage"
 
 const CartPage = () => {
    const [products, setProducts, removeValue] = useLocalStorage<ProductWithAmount[]>("products", [])
