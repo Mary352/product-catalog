@@ -3,7 +3,7 @@ import type { ProductsByCategoryProps } from '@/models/Products/client';
 import axios from 'axios';
 
 class ProductService {
-   private URL = 'https://fakestoreapi.com/products'
+   private URL = `${import.meta.env.VITE_BE_URL}/products`
    // private URL = 'https://dummyjson.com/products'
    private categoriesUrl = `${this.URL}/categories`
 
