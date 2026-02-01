@@ -1,31 +1,20 @@
 import ProductCardHorizontal from "@/components/dummies/ProductCardHorizontal"
 import PageLayout from "@/components/layout/PageLayout"
 import type { ProductWithAmount } from "@/models/Products/client"
-import { EmptyState, Flex, Heading, Link, VStack } from "@chakra-ui/react"
+import { Flex, Heading, Link } from "@chakra-ui/react"
 import { LuShoppingCart } from "react-icons/lu"
 import { useLocalStorage } from 'usehooks-ts'
+import EmptyPage from "../EmptyPage/EmptyPage"
 
 const CartPage = () => {
    const [products, setProducts, removeValue] = useLocalStorage<ProductWithAmount[]>("products", [])
 
    if (products.length === 0) {
-      return (<PageLayout>
-         <Flex h="100svh" w="100%" alignItems="center">
-            <EmptyState.Root>
-               <EmptyState.Content>
-                  <EmptyState.Indicator>
-                     <LuShoppingCart />
-                  </EmptyState.Indicator>
-                  <VStack textAlign="center">
-                     <EmptyState.Title>Корзина пуста</EmptyState.Title>
-                     <EmptyState.Description>
-                        Выберите товары в <Link href="/" color="purple">каталоге</Link>
-                     </EmptyState.Description>
-                  </VStack>
-               </EmptyState.Content>
-            </EmptyState.Root>
-         </Flex>
-      </PageLayout>)
+      return <EmptyPage
+         title="Корзина пуста"
+         icon={<LuShoppingCart />}
+         description={<>Выберите товары в <Link href="/" color="purple">каталоге</Link></>}
+      />
    }
 
    return (<PageLayout>

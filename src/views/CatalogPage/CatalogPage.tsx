@@ -12,6 +12,8 @@ import { sortProducts } from '@/utils/helpers/productsHelpers'
 import { Toaster } from '@/components/ui/toaster'
 import PageLayout from '@/components/layout/PageLayout'
 import { Box, Flex, Heading } from '@chakra-ui/react'
+import EmptyPage from '../EmptyPage/EmptyPage'
+import { LuAnnoyed } from "react-icons/lu";
 
 const pageSize = 12
 
@@ -42,6 +44,14 @@ const CatalogPage = () => {
 
    const visibleItems = finalData.slice(startRange, endRange)
    const count = finalData.length
+
+   if (!data || data?.length === 0) {
+      return <EmptyPage
+         title="Каталог пуст"
+         icon={<LuAnnoyed />}
+         description={<>Скоро новые поступления! Не пропустите!</>}
+      />
+   }
 
    return <PageLayout>
       <Toaster />
