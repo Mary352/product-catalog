@@ -45,7 +45,7 @@ const CatalogPage = () => {
 
    return <PageLayout>
       <Toaster />
-      <Box margin="0 auto" maxW="1000px" padding="0 15px" mb="15px">
+      <Box margin="0 auto" maxW="1000px" padding="0 15px" mb="15px" pt="2.5rem">
          <Search search={searchValue} setSearch={setSearchValue} setSelectedCategory={setSelectedCategory} setPage={setPage} />
          <Flex
             mt="15px"

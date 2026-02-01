@@ -29,7 +29,7 @@ const CartPage = () => {
    }
 
    return (<PageLayout>
-      <Flex gap={4}>
+      <Flex gap={4} pt="2.5rem">
          <Heading size={"3xl"} mb={7}>Итого</Heading>
          <Heading size={"3xl"}>{products.reduce((accum, curVal) => accum + curVal.price * curVal.amount, 0).toFixed(2)}$</Heading>
       </Flex>

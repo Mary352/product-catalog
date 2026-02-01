@@ -1,3 +1,9 @@
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
 /* :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
