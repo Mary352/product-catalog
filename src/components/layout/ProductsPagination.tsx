@@ -11,7 +11,7 @@ const pageSize = 12
 
 const ProductsPagination = ({ count, page, setPage, children }: ProductsPaginationProps) => {
    return (
-      <Stack gap="4">
+      <Stack gap="4" pb="5rem">
          {children}
          <Pagination.Root
             count={count}
