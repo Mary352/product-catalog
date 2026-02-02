@@ -9,7 +9,6 @@ class ProductService {
 
    getProducts = () => {
       return axios.get<Product[]>(this.URL)
-      // return axios.get<{products: Product[]}>(this.URL)
    }
 
    getCategories = () => {

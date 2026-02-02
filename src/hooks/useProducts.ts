@@ -6,7 +6,6 @@ export const useProducts = () => {
             queryKey: ['products'],
             queryFn: productService.getProducts,
             select: (data) => data.data
-            // select: (data) => data.data.products
       })
 
       return { isPending, isError, data }

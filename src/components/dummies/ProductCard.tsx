@@ -43,7 +43,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             fit="scale-down"
             h="250px"
             src={product.image}
-            // src={product.images[0]}
             alt={product.title}
          />
          <Card.Body gap="2">
@@ -54,8 +53,6 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <Text justifySelf="end" textStyle="2xl" fontWeight="medium" letterSpacing="tight" mt="2">{product.price && `${product.price}$`}</Text>
             <Text fontSize="0.875rem" color="#1560BD">{productInStock > 0 ? `Осталось ${productInStock} шт.` : "Нет в наличии"} </Text>
 
-            {/* {isInCart ? <Text color="green" justifySelf="end" textStyle="2xl" fontWeight="medium" letterSpacing="tight">Уже в корзине</Text>
-               : <Button variant="solid" onClick={addToCart}>Добавить в корзину</Button>} */}
             <Button variant="solid" onClick={addToCart} disabled={isInCart}>Добавить в корзину</Button>
          </Card.Footer>
       </Card.Root>
