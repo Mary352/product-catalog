@@ -52,3 +52,6 @@ npm run dev
 - Подсчёт общей стоимости;
 - Иконка корзины с badge (количество товаров);
 - Сохранение корзины в localStorage.
+
+## Try on Netlify
+https://product-catalog-mary352.netlify.app/
