@@ -1,5 +1,9 @@
-@media (max-width: 768px) {
-  :root {
-    font-size: 14px;
-  }
-}
+ :root {
+   --main-links-color: purple;
+ }
+
+ @media (max-width: 768px) {
+   :root {
+     font-size: 14px;
+   }
+ }

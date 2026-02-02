@@ -13,7 +13,7 @@ const CartPage = () => {
       return <EmptyPage
          title="Корзина пуста"
          icon={<LuShoppingCart />}
-         description={<>Выберите товары в <Link href="/" color="purple">каталоге</Link></>}
+         description={<>Выберите товары в <Link href="/" color="var(--main-links-color)">каталоге</Link></>}
       />
    }
 
