@@ -14,6 +14,7 @@ import PageLayout from '@/components/layout/PageLayout'
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { EmptyPage, EmptySearh } from '../EmptyPage/EmptyPage'
 import { LuAnnoyed } from "react-icons/lu";
+import CatalogPageSkeleton from './CatalogPageSkeleton'
 
 const pageSize = 12
 
@@ -51,6 +52,10 @@ const CatalogPage = () => {
          icon={<LuAnnoyed />}
          description={<>Скоро новые поступления! Не пропустите!</>}
       />
+   }
+
+   if (isPending) {
+      return <CatalogPageSkeleton />
    }
 
    return <PageLayout>
